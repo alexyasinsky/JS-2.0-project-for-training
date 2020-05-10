@@ -8,7 +8,7 @@
 <body>
     <div>
         <h1>Задание 1</h1>
-        <p>
+        <p id="task1__p">
             One: 'Hi Mary.' Two: 'Oh, hi.'<br>
             One: 'How are you doing?'<br>
             Two: 'I'm doing alright. How about you?'<br>
@@ -26,11 +26,11 @@
             Two: 'I'll see you next time.'<br>
             One: 'Sure.' Bye.'<br>
         </p>
-        <button id="task1">Заменить '' на ""</button>
+        <button id="task1__btn">Заменить '' на ""</button>
     </div>
     <div>
         <h1>Задание 2</h1>
-        <p>
+        <p id="task2__p">
             One: 'Hi Mary.' Two: 'Oh, hi.'<br>
             One: 'How are you doing?'<br>
             Two: 'I'm doing alright. How about you?'<br>
@@ -48,16 +48,16 @@
             Two: 'I'll see you next time.'<br>
             One: 'Sure.' Bye.'<br>
         </p>
-        <button id="task2">Заменить '' на "" без учета апострофа</button>
+        <button id="task2__btn">Заменить '' на "" без учета апострофа</button>
     </div>
     <div>
         <h1>Задание 3</h1>
         <form action="#">
-            <input type="text" name="name" value="Имя">
-            <input type="tel" name="tel" value="+7(000)000-0000">
-            <input type="email" name="email" value="email">
-            <input type="text" name="text" value="text...">
-            <input type="submit" value="Отправить">
+            <input type="text" name="name" placeholder="Имя"><label for="name">Имя содержит только буквы</label>
+            <input type="text" name="tel" placeholder="+7(000)000-0000"><label for="tel">Телефон имеет вид +7(000)000-0000</label>
+            <input type="text" name="email" placeholder="email"><label for="email">E-mail имеет вид mymail@mail.ru, или my.mail@mail.ru, или my-mail@mail.ru</label>
+            <input type="text" name="text" placeholder="text..."><label for="text"></label>
+            <input type="submit" name="submit" value="Отправить">
         </form>
     </div>
     

@@ -1,6 +1,20 @@
+form {
+  width: 600px;
+}
+
 form input {
   width: 300px;
   margin-bottom: 20px;
-  display: block;
+  margin-right: 20px;
+}
+
+form label {
+  visibility: hidden;
+  color: red;
+  font-size: 8px;
+}
+
+.visible {
+  visibility: visible;
 }
 /*# sourceMappingURL=style.css.map */
