@@ -1,1 +1,6 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+form input {
+  width: 300px;
+  margin-bottom: 20px;
+  display: block;
+}
+/*# sourceMappingURL=style.css.map */
