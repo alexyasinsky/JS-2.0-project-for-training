@@ -17,4 +17,8 @@ form label {
 .visible {
   visibility: visible;
 }
+
+.red {
+  border-color: red;
+}
 /*# sourceMappingURL=style.css.map */
