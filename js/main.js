@@ -5,24 +5,29 @@ const products = [
   {id: 4, title: 'Gamepad', price: 4500},
 ];
 
-const renderProduct = (title, price) => {
+const renderProduct = (title, price, img = 'https://via.placeholder.com/120') => {
   return `<div class="product-item">
+            <img src="${img}"></img>          
             <h3>${title}</h3>
             <p>${price}</p>
-            <button class="by-btn">Добавить в корзину</button>
+            <button class="buy-btn btn"><i class="fas fa-shopping-cart"></i>Добавить в корзину</button>
           </div>`;
 };
 
 const renderProducts = (list) => {
-  // const productList = list.map((good) => {
-  //   return renderProduct(good.title, good.price);
-  // });
-  const productList = [];
-  list.forEach(good => {
-    productList.push(renderProduct(good.title, good.price));
+  list.forEach(item => {
+    document.querySelector('.products').insertAdjacentHTML('beforeend', renderProduct(item.title, item.price));
   });
-  console.log(productList);
-  document.querySelector('.products').innerHTML = productList;
-};
+}
 
-renderProducts(products);
+ /* 2 вариант: 
+    const renderProducts = (list) => {
+    const productList = list.reduce((result, good) => {
+      return result + renderProduct(good.title, good.price);
+    }, '');
+    document.querySelector('.products').innerHTML = productList;
+  }; 
+*/
+
+const cartBtn = document.querySelector('.btn-cart');
+cartBtn.addEventListener('click', () => renderProducts(products));
