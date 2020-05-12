@@ -1,5 +1,22 @@
-form input {
-    width: 300px;
-    margin-bottom: 20px;
-    display: block;
+form {
+    width: 600px;
+    input {
+        width: 300px;
+        margin-bottom: 20px;
+        margin-right: 20px;
+    }
+    label {
+        visibility: hidden;
+        color: red;
+        font-size: 8px;
+    }
 }
+
+.visible {
+    visibility: visible;
+}
+
+.red {
+    border-color: red;
+}
+    
