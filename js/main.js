@@ -1,19 +1,18 @@
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
-// Переделать в ДЗ
-let getRequest = (url, cb) => {
+let getRequest = (url) => {
   let xhr = new XMLHttpRequest();
   xhr.open('GET', url, true);
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
-      if (xhr.status !== 200) {
-        console.log('Error');
-      } else {
-        cb(xhr.responseText);
-      }
-    }
-  };
   xhr.send();
+  return new Promise ((resolve,reject) => {
+    xhr.onload = () => {
+      if (xhr.status !== 200) {
+        reject(console.log('Error'));
+      } else {
+        resolve(xhr.responseText);
+      }
+    };
+  });
 };
 
 class ProductList {
@@ -21,28 +20,28 @@ class ProductList {
     this.container = container;
     this.goods = [];
     this.allProducts = [];
-    // this._fetchProducts();
-    this._getProducts()
-        .then(data => {
-          this.goods = [...data];
-          this._render();
-        });
+    this._fetchProducts();
+    // this._getProducts()
+    //     .then(data => {
+    //       this.goods = [...data];
+    //       this._render();
+    //     });
   }
 
-  // _fetchProducts() {
-  //   getRequest(`${API}/catalogData.json`, (data) => {
-  //     this.goods = JSON.parse(data);
-  //     this._render();
-  //   });
+  _fetchProducts() {
+    getRequest(`${API}/catalogData.json`).then(data => {
+      this.goods = JSON.parse(data);
+      this._render();
+    });
+  }
+
+  // _getProducts() {
+  //   return fetch(`${API}/catalogData.json`)
+  //       .then(response => response.json())
+  //       .catch(error => {
+  //         console.log(error);
+  //       });
   // }
-
-  _getProducts() {
-    return fetch(`${API}/catalogData.json`)
-        .then(response => response.json())
-        .catch(error => {
-          console.log(error);
-        });
-  }
 
   calcSum() {
     return this.goods.reduce((sum, good) => sum + good.price, 0);
@@ -61,7 +60,7 @@ class ProductList {
 
 class ProductItem {
   constructor(product, img = 'https://placehold.it/200x150') {
-    this.title = product.title;
+    this.title = product.product_name;
     this.price = product.price;
     this.id = product.id;
     this.img = img;
@@ -78,24 +77,50 @@ class ProductItem {
             </div>`;
   }
 }
-new ProductList();
-// const products = [
-//   {id: 1, title: 'Notebook', price: 20000},
-//   {id: 2, title: 'Mouse', price: 1500},
-//   {id: 3, title: 'Keyboard', price: 5000},
-//   {id: 4, title: 'Gamepad', price: 4500},
-// ];
-//
-// const renderProduct = (item, img='https://placehold.it/200x150') => `<div class="product-item" data-id="${this.id}">
-//               <img src="${img}" alt="Some img">
-//               <div class="desc">
-//                   <h3>${item.title}</h3>
-//                   <p>${item.price} \u20bd</p>
-//                   <button class="buy-btn">Купить</button>
-//               </div>
-//           </div>`;
-//
-// const renderProducts = list => document.querySelector('.products')
-//     .insertAdjacentHTML('beforeend', list.map(item => renderProduct(item)).join(''));
-//
-// renderProducts(products);
+
+
+class Basket {
+  constructor(){
+    this.container = document.querySelector(".cart");
+    this.goods = [];
+    this._addBasketButtonsListeners();
+    this.addProduct();
+    this.removeProduct();
+    this.getBasketList();
+    this._renderBasket();
+  
+  
+  }
+
+  _addBasketButtonsListeners() {
+    let buttons = document.querySelectorAll('.buy-btn');
+    for (let button of buttons) {
+      button.addEventListener('click', this.addProduct);
+    }
+  }
+
+  addProduct() {
+    let id = this.parentElement;
+
+  }
+
+  removeProduct() {
+
+  }
+
+  getBasketList() {
+
+  }
+
+  _renderBasket() {
+
+  }
+
+}
+
+new Promise ((resolve, reject) => {
+  new ProductList();
+  resolve();
+}).then(new Basket);
+
+
