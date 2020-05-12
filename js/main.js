@@ -5,6 +5,7 @@ class ProductList {
     this.allProducts = [];
     this._fetchProducts();
     this._render();
+    this.summarizePrices();
   }
 
   _fetchProducts() {
@@ -24,6 +25,14 @@ class ProductList {
       this.allProducts.push(productObject);
       block.insertAdjacentHTML('beforeend', productObject.render());
     }
+  }
+
+  summarizePrices() {
+    let sum = 0;
+    for (let good of this.goods) {
+      sum += good.price;
+    }
+    alert(`Сумма товаров на странице равна ${sum} \u20bd`);
   }
 }
 
@@ -47,23 +56,32 @@ class ProductItem {
   }
 }
 new ProductList();
-// const products = [
-//   {id: 1, title: 'Notebook', price: 20000},
-//   {id: 2, title: 'Mouse', price: 1500},
-//   {id: 3, title: 'Keyboard', price: 5000},
-//   {id: 4, title: 'Gamepad', price: 4500},
-// ];
-//
-// const renderProduct = (item, img='https://placehold.it/200x150') => `<div class="product-item" data-id="${this.id}">
-//               <img src="${img}" alt="Some img">
-//               <div class="desc">
-//                   <h3>${item.title}</h3>
-//                   <p>${item.price} \u20bd</p>
-//                   <button class="buy-btn">Купить</button>
-//               </div>
-//           </div>`;
-//
-// const renderProducts = list => document.querySelector('.products')
-//     .insertAdjacentHTML('beforeend', list.map(item => renderProduct(item)).join(''));
-//
-// renderProducts(products);
+
+
+class Basket {
+  constructor(container = ".basket") {
+    this.container = container; //контейнер в разметке, куда будет вставляться корзина
+    this.productsAdded = []; //массив, куда будут попадать продукты, добавленные в корзину
+    this._renderBasketList(); //метод отрисовки корзины
+  }
+
+  _renderBasket() {
+
+  }
+}
+
+class BasketItem {
+  constructor(product) {
+    this.title = product.title;
+    this.price = product.price;
+    this.id = product.id;
+    this.img = img;
+  }
+
+  renderBasketItem() { 
+    // метод отрисовки позиции в корзине (разметка)
+  }
+}
+
+// метод, добавляющий товар в BasketList.productsAdded, я бы добавил в класс ProductItem, т.к. кнопка находится в карточке товара
+

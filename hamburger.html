@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гамбургер</title>
+</head>
+<body>
+    <script>
+        'use strict';
+
+        class Hamburger {
+        
+            constructor(size = this.getSize(), stuffing = this.getStuffing()) { 
+                this.size = size,
+                this.stuffing = stuffing;
+                this.getTopping();
+                this._calculatePrice(this.size, this.stuffing);
+                this._calculateCalories(this.size, this.stuffing);
+            }
+
+            getSize() {
+                
+                let size = prompt('Введите размер гамбургера: 1 - маленький или 2 - большой');
+                
+                switch(size) {
+                    case "1":
+                        return {price: 50, calories: 20};
+                    case "2":
+                        return {price: 100, calories: 40};
+                }
+                
+                alert("Вы неправильно ввели размер!");
+                this.getSize();
+            }
+
+            getStuffing() {
+                
+                let stuffing = prompt('Введите начинку: 1 - сыр, 2 - салат или 3 - картофель');
+                
+                switch(stuffing) {
+                    case "1":
+                        return [new Ingredient('cheese', 10, 20)];
+                    case "2":
+                        return [new Ingredient('salad', 20, 5)];
+                    case "3":
+                        return [new Ingredient('potato', 15, 10)];
+                }
+
+                alert("Вы неправильно ввели начинку!");
+                this.getStuffing();
+            }
+
+            getTopping() {
+                
+                let topping = prompt('Введите заправку: 1 - специи, 2 - майонез или 3 - всё вместе');
+                
+                switch(topping) {
+                    case "1":
+                        this.stuffing.push(new Ingredient('spices', 0, 0));
+                        break;
+                    case "2":
+                        this.stuffing.push(new Ingredient('mayo', 20, 5));
+                        break;
+                    case "3": 
+                        this.stuffing.push(new Ingredient('spices', 0, 0));
+                        this.stuffing.push(new Ingredient('mayo', 20, 5));
+                        break;
+                    default:
+                    alert("Вы неправильно ввели заправку!");
+                    this.getTopping();
+                }
+            }
+
+            _calculatePrice(size, stuffing) {
+
+                let price = 0;
+
+                price += size.price;
+
+                for (let ingredient of stuffing) {
+                    price += ingredient.price;
+                }
+
+                alert(`Цена гамбургера: ${price} \u20bd`);
+            }
+            _calculateCalories(size, stuffing) {
+
+                let calories = 0;
+
+                calories += size.calories;
+
+                for (let ingredient of stuffing) {
+                    calories += ingredient.calories;
+                }
+
+                alert(`Калорийность гамбургера: ${calories}`);
+            }
+        }
+
+        class Ingredient {
+
+            constructor (name, price, calories) {
+                this.name = name;
+                this.price = price;
+                this.calories = calories;
+            }
+        }
+
+        new Hamburger();
+
+    </script>
+</body>
+</html>
